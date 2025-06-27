@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ウトスさん Utos-San  (Pasabuy ni JP)</title>
+    <style>
+        :root {
+            --primary: #BC002D; /* Japanese red */
+            --secondary: #F7F3E9; /* Cream */
+            --accent: #005CAF; /* Japanese blue */
+            --text: #333;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary);
+            color: var(--text);
+            background-image: url('https://www.transparenttextures.com/patterns/asfalt-light.png');
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            position: relative;
+            border-bottom: 5px solid #FFD700;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .logo::before, .logo::after {
+            content: "✿";
+            margin: 0 15px;
+            font-size: 1.8rem;
+        }
+        
+        nav {
+            background-color: var(--accent);
+            padding: 0.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            margin: 0 1.5rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover {
+            color: #FFD700;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #FFD700;
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .hero {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1492571350019-22de08371fd3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            margin-bottom: 3rem;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 1rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            color: var(--primary);
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background-color: var(--accent);
+            margin: 0.5rem auto;
+        }
+        
+        .price-list-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 3rem;
+            padding: 1rem;
+        }
+        
+        .search-box {
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .search-box input {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        th {
+            background-color: var(--primary);
+            color: white;
+            position: sticky;
+            top: 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        th:hover {
+            background-color: #9a0023;
+        }
+        
+        th::after {
+            content: '↕';
+            margin-left: 5px;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            text-align: center;
+        }
+        
+        .download-btn:hover {
+            background-color: #004a8f;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background-color: #9a0023;
+        }
+        
+        footer {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
+        }
+        
+        .footer-section h3 {
+            border-bottom: 2px solid #FFD700;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: #FFD700;
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2rem;
+            }
+            
+            nav li {
+                margin: 0 0.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            th, td {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            
+            .search-box {
+                flex-direction: column;
+            }
+            
+            .search-box input {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">ウトスさん Utos-San  (Pasabuy ni JP)</div>
+        <p>Pasabuy Service</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#price-list">Price List</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+    
+    <div class="container">
+        <section id="price-list">
+            <h2 class="section-title">Our Price List</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">Updated as of June 2025</p>
+            
+            <div class="price-list-container">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search products..." onkeyup="searchTable()">
+                </div>
+                
+                <div class="table-responsive">
+                    <table id="priceTable">
+                        <thead>
+                            <tr>
+                                <th onclick="sortTable(0)">Product Name</th>
+                                <th onclick="sortTable(1, true)">Selling Price (₱)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Alfort Chocolate Small</td>
+                                <td>₱71.00</td>
+                            </tr>
+                            <tr>
+                                <td>SB Matcha Latte</td>
+                                <td>₱388.00</td>
+                            </tr>
+                            <tr>
+                                <td>Wasabi Great King</td>
+                                <td>₱701.00</td>
+                            </tr>
+                            <tr>
+                                <td>Hichew Soda</td>
+                                <td>₱116.00</td>
+                            </tr>
+                            <tr>
+                                <td>Hichew Set with Bag</td>
+                                <td>₱1,296.00</td>
+                            </tr>
+                            <tr>
+                                <td>Okuchi Propolis White</td>
+                                <td>₱158.00</td>
+                            </tr>
+                            <tr>
+                                <td>Biore Sunscreen Spray</td>
+                                <td>₱642.00</td>
+                            </tr>
+                            <tr>
+                                <td>Hokkaido Camembert Cheese</td>
+                                <td>₱701.00</td>
+                            </tr>
+                            <tr>
+                                <td>Pocky Giant Yubari Melon</td>
+                                <td>₱940.00</td>
+                            </tr>
+                            <tr>
+                                <td>Pocky Giant Iyokan Orange</td>
+                                <td>₱940.00</td>
+                            </tr>
+                            <tr>
+                                <td>Pocky Giant Nishiki Cherry</td>
+                                <td>₱940.00</td>
+                            </tr>
+                            <tr>
+                                <td>Bourbon Alfort Assorted Winter Pack</td>
+                                <td>₱765.00</td>
+                            </tr>
+                            <tr>
+                                <td>Starbucks Premium Mix Sakura Strawberry Latte</td>
+                                <td>₱388.00</td>
+                            </tr>
+                            <tr>
+                                <td>Yakiimo spread</td>
+                                <td>₱259.00</td>
+                            </tr>
+                            <tr>
+                                <td>2 Kinds of Chocolate-Covered Strawberries with Melon</td>
+                                <td>₱830.00</td>
+                            </tr>
+                            <tr>
+                                <td>Meiji Meltykiss Party Assortment</td>
+                                <td>₱388.00</td>
+                            </tr>
+                            <tr>
+                                <td>Pelican Love Hip Scrub Butt Soap</td>
+                                <td>₱330.00</td>
+                            </tr>
+                            <tr>
+                                <td>Natori Cheetara Camembert</td>
+                                <td>₱226.00</td>
+                            </tr>
+                            <tr>
+                                <td>KitKat Milo</td>
+                                <td>₱278.00</td>
+                            </tr>
+                            <tr>
+                                <td>KitKat Dark Chocolate</td>
+                                <td>₱174.00</td>
+                            </tr>
+                            <tr>
+                                <td>KitKat Strawberry</td>
+                                <td>₱174.00</td>
+                            </tr>
+                            <tr>
+                                <td>GATSBY Ice Deodorant Body Paper, Unscented</td>
+                                <td>₱197.00</td>
+                            </tr>
+                            <tr>
+                                <td>Otsuka Green Tea Co Organic Matcha 30g</td>
+                                <td>₱1,296.00</td>
+                            </tr>
+                            <tr>
+                                <td>Kyoto Chanokura Uji Matcha Powder 150g</td>
+                                <td>₱1,037.00</td>
+                            </tr>
+                            <tr>
+                                <td>Skin Aqua 140ml</td>
+                                <td>₱568.00</td>
+                            </tr>
+                            <tr>
+                                <td>Starbucks Sakura 2025 Reusable Cup</td>
+                                <td>₱500.00</td>
+                            </tr>
+                            <tr>
+                                <td>Bourbon Alfort Mini Chocolate</td>
+                                <td>₱71.00</td>
+                            </tr>
+                            <tr>
+                                <td>Meiji Almond Chocolate</td>
+                                <td>₱194.00</td>
+                            </tr>
+                            <tr>
+                                <td>ichiran ramen 5's</td>
+                                <td>₱1,295.00</td>
+                            </tr>
+                            <tr>
+                                <td>ichiran ramen 2's</td>
+                                <td>₱582.00</td>
+                            </tr>
+                            <tr>
+                                <td>Starbucks Premium Mix Matcha Latte</td>
+                                <td>₱388.00</td>
+                            </tr>
+                            <tr>
+                                <td>Kit Kat Strawberry Shortcake</td>
+                                <td>₱161.00</td>
+                            </tr>
+                            <tr>
+                                <td>Rohto Lycée Eyedrops</td>
+                                <td>₱315.00</td>
+                            </tr>
+                            <tr>
+                                <td>Rohto Cool 40α Eye Drop</td>
+                                <td>₱131.00</td>
+                            </tr>
+                            <tr>
+                                <td>DHC-Continuous-Vitamin-C-Supplement-240-Tablets</td>
+                                <td>₱324.00</td>
+                            </tr>
+                            <tr>
+                                <td>DHC Vit C</td>
+                                <td>₱207.00</td>
+                            </tr>
+                            <tr>
+                                <td>DHC Collagen</td>
+                                <td>₱323.00</td>
+                            </tr>
+                            <tr>
+                                <td>Ghana Roastmilk</td>
+                                <td>₱107.00</td>
+                            </tr>
+                            <tr>
+                                <td>KEANA BEAUTE VEGAN & HALAL</td>
+                                <td>₱660.00</td>
+                            </tr>
+                            <tr>
+                                <td>KEANA RICE PACK</td>
+                                <td>₱825.00</td>
+                            </tr>
+                            <tr>
+                                <td>Bluelet Decoral, Relax Aroma Fragrance</td>
+                                <td>₱164.00</td>
+                            </tr>
+                            <tr>
+                                <td>Ishizawa Keana Rice Pack</td>
+                                <td>₱825.00</td>
+                            </tr>
+                            <tr>
+                                <td>Bufferin A 20 tablets</td>
+                                <td>₱296.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        
+        
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Pasabuy ni JP is a trusted pasabuy service.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Metro Manila, Philippines</p>
+                <p><i class="fab fa-facebook"></i> ウトスさん Utos-San</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3 style="margin-top: 1.5rem;">Payment Methods</h3>
+                <p>GCash • Bank Transfer • PayPal</p>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>© 2025 Pasabuy ni JP. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Search functionality
+        function searchTable() {
+            const input = document.getElementById("searchInput");
+            const filter = input.value.toUpperCase();
+            const table = document.getElementById("priceTable");
+            const tr = table.getElementsByTagName("tr");
+
+            for (let i = 1; i < tr.length; i++) {
+                const td = tr[i].getElementsByTagName("td")[0]; // Search only in product name column
+                if (td) {
+                    const txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        // Sorting functionality
+        function sortTable(columnIndex, isNumeric = false) {
+            const table = document.getElementById("priceTable");
+            const tbody = table.querySelector("tbody");
+            const rows = Array.from(tbody.querySelectorAll("tr"));
+            let direction = "asc";
+            
+            // Check if we're already sorted by this column
+            const header = table.querySelectorAll("th")[columnIndex];
+            if (header.classList.contains("sorted-asc")) {
+                direction = "desc";
+                header.classList.remove("sorted-asc");
+                header.classList.add("sorted-desc");
+            } else if (header.classList.contains("sorted-desc")) {
+                direction = "asc";
+                header.classList.remove("sorted-desc");
+                header.classList.add("sorted-asc");
+            } else {
+                // Remove all sort classes first
+                table.querySelectorAll("th").forEach(th => {
+                    th.classList.remove("sorted-asc", "sorted-desc");
+                });
+                header.classList.add("sorted-asc");
+            }
+            
+            rows.sort((a, b) => {
+                const aValue = a.cells[columnIndex].textContent.trim();
+                const bValue = b.cells[columnIndex].textContent.trim();
+                
+                if (isNumeric) {
+                    // For numeric columns, remove currency symbols and commas
+                    const numA = parseFloat(aValue.replace(/[^\d.-]/g, ''));
+                    const numB = parseFloat(bValue.replace(/[^\d.-]/g, ''));
+                    return direction === "asc" ? numA - numB : numB - numA;
+                } else {
+                    // For text columns
+                    return direction === "asc" 
+                        ? aValue.localeCompare(bValue) 
+                        : bValue.localeCompare(aValue);
+                }
+            });
+            
+            // Rebuild the table
+            rows.forEach(row => tbody.appendChild(row));
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
