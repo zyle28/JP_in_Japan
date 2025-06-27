@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ウトスさん Utos-San  (Pasabuy ni JP)</title>
+    <title>ウトスさん Utos-San (Pasabuy ni JP)</title>
     <style>
         :root {
             --primary: #BC002D; /* Japanese red */
@@ -19,6 +19,7 @@
             background-color: var(--secondary);
             color: var(--text);
             background-image: url('https://www.transparenttextures.com/patterns/asfalt-light.png');
+            -webkit-text-size-adjust: 100%; /* Prevents text zooming on mobile */
         }
         
         header {
@@ -64,7 +65,7 @@
         }
         
         nav li {
-            margin: 0 1.5rem;
+            margin: 0 1rem;
         }
         
         nav a {
@@ -78,54 +79,6 @@
         
         nav a:hover {
             color: #FFD700;
-        }
-        
-        nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: #FFD700;
-            transition: width 0.3s;
-        }
-        
-        nav a:hover::after {
-            width: 100%;
-        }
-        
-        .hero {
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1492571350019-22de08371fd3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-            position: relative;
-            margin-bottom: 3rem;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            padding: 0 1rem;
-        }
-        
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-        
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
         
         .container {
@@ -160,10 +113,7 @@
         }
         
         .search-box {
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
+            margin-bottom: 1.5rem; /* Increased margin */
         }
         
         .search-box input {
@@ -174,6 +124,26 @@
             box-sizing: border-box;
             font-family: inherit;
         }
+        
+        /* --- NEW CSS FOR DISCLAIMER BOX --- */
+        .disclaimer-box {
+            background-color: #FFF9E6;
+            border-left: 4px solid #FFD700;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 4px;
+        }
+        .disclaimer-box p {
+            margin: 0;
+            line-height: 1.5;
+            color: #555;
+            font-size: 0.9rem;
+        }
+        .disclaimer-box .fa-info-circle {
+            margin-right: 0.5rem;
+            color: var(--accent);
+        }
+        /* --- END NEW CSS --- */
         
         table {
             width: 100%;
@@ -190,21 +160,11 @@
         th {
             background-color: var(--primary);
             color: white;
-            position: sticky;
-            top: 0;
             cursor: pointer;
-            transition: background-color 0.3s;
         }
         
         th:hover {
             background-color: #9a0023;
-        }
-        
-        th::after {
-            content: '↕';
-            margin-left: 5px;
-            font-size: 0.8rem;
-            opacity: 0.7;
         }
         
         tr:nth-child(even) {
@@ -213,35 +173,6 @@
         
         tr:hover {
             background-color: #f1f1f1;
-        }
-        
-        .download-btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            font-family: inherit;
-            text-align: center;
-        }
-        
-        .download-btn:hover {
-            background-color: #004a8f;
-            transform: translateY(-2px);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-        
-        .btn-primary {
-            background-color: var(--primary);
-        }
-        
-        .btn-primary:hover {
-            background-color: #9a0023;
         }
         
         footer {
@@ -268,66 +199,67 @@
             display: inline-block;
         }
         
-        .social-icons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .social-icons a {
-            color: white;
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-        
-        .social-icons a:hover {
-            color: #FFD700;
-        }
-        
         .copyright {
             margin-top: 2rem;
             padding-top: 1rem;
             border-top: 1px solid rgba(255,255,255,0.2);
         }
         
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
+        @media screen and (max-width: 600px) {
             .logo {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
-            
+            .logo::before, .logo::after {
+                font-size: 1.5rem;
+                margin: 0 10px;
+            }
             nav li {
                 margin: 0 0.5rem;
             }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1.2rem;
-            }
-            
-            th, td {
-                padding: 0.5rem;
+            nav a {
                 font-size: 0.9rem;
             }
-        }
-        
-        @media (max-width: 480px) {
+            .section-title {
+                font-size: 1.5rem;
+            }
             table {
+                border: 0;
+            }
+            table thead {
+                border: none;
+                clip: rect(0 0 0 0);
+                height: 1px;
+                margin: -1px;
+                overflow: hidden;
+                padding: 0;
+                position: absolute;
+                width: 1px;
+            }
+            table tr {
                 display: block;
-                overflow-x: auto;
-                white-space: nowrap;
+                margin-bottom: .625em;
+                border-bottom: 3px solid var(--primary);
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             }
-            
-            .search-box {
-                flex-direction: column;
+            table td {
+                border-bottom: 1px solid #ddd;
+                display: block;
+                font-size: .9em;
+                text-align: right;
+                padding-left: 50%;
+                position: relative;
             }
-            
-            .search-box input {
-                margin-right: 0;
-                margin-bottom: 1rem;
+            table td::before {
+                content: attr(data-label);
+                float: left;
+                font-weight: bold;
+                text-align: left;
+                padding-right: 10px;
+                position: absolute;
+                left: 1rem;
+            }
+            table td:last-child {
+                border-bottom: 0;
             }
         }
     </style>
@@ -336,19 +268,17 @@
 </head>
 <body>
     <header>
-        <div class="logo">ウトスさん Utos-San  (Pasabuy ni JP)</div>
+        <div class="logo">ウトスさん Utos-San</div>
         <p>Pasabuy Service</p>
     </header>
     
     <nav>
         <ul>
             <li><a href="#home">Home</a></li>
-            <li><a href="#products">Products</a></li>
             <li><a href="#price-list">Price List</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
-    
     
     <div class="container">
         <section id="price-list">
@@ -359,194 +289,70 @@
                 <div class="search-box">
                     <input type="text" id="searchInput" placeholder="Search products..." onkeyup="searchTable()">
                 </div>
+
+                <!-- NEW DISCLAIMER BOX HTML -->
+                <div class="disclaimer-box">
+                    <p><i class="fas fa-info-circle"></i> <strong>Please Note:</strong> Prices are subject to change without prior notice. All items are subject to availability in Japan.</p>
+                </div>
+                <!-- END NEW DISCLAIMER BOX HTML -->
                 
                 <div class="table-responsive">
                     <table id="priceTable">
                         <thead>
                             <tr>
-                                <th onclick="sortTable(0)">Product Name</th>
-                                <th onclick="sortTable(1, true)">Selling Price (₱)</th>
+                                <th>Product Name</th>
+                                <th>Selling Price (₱)</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Alfort Chocolate Small</td>
-                                <td>₱71.00</td>
-                            </tr>
-                            <tr>
-                                <td>SB Matcha Latte</td>
-                                <td>₱388.00</td>
-                            </tr>
-                            <tr>
-                                <td>Wasabi Great King</td>
-                                <td>₱701.00</td>
-                            </tr>
-                            <tr>
-                                <td>Hichew Soda</td>
-                                <td>₱116.00</td>
-                            </tr>
-                            <tr>
-                                <td>Hichew Set with Bag</td>
-                                <td>₱1,296.00</td>
-                            </tr>
-                            <tr>
-                                <td>Okuchi Propolis White</td>
-                                <td>₱158.00</td>
-                            </tr>
-                            <tr>
-                                <td>Biore Sunscreen Spray</td>
-                                <td>₱642.00</td>
-                            </tr>
-                            <tr>
-                                <td>Hokkaido Camembert Cheese</td>
-                                <td>₱701.00</td>
-                            </tr>
-                            <tr>
-                                <td>Pocky Giant Yubari Melon</td>
-                                <td>₱940.00</td>
-                            </tr>
-                            <tr>
-                                <td>Pocky Giant Iyokan Orange</td>
-                                <td>₱940.00</td>
-                            </tr>
-                            <tr>
-                                <td>Pocky Giant Nishiki Cherry</td>
-                                <td>₱940.00</td>
-                            </tr>
-                            <tr>
-                                <td>Bourbon Alfort Assorted Winter Pack</td>
-                                <td>₱765.00</td>
-                            </tr>
-                            <tr>
-                                <td>Starbucks Premium Mix Sakura Strawberry Latte</td>
-                                <td>₱388.00</td>
-                            </tr>
-                            <tr>
-                                <td>Yakiimo spread</td>
-                                <td>₱259.00</td>
-                            </tr>
-                            <tr>
-                                <td>2 Kinds of Chocolate-Covered Strawberries with Melon</td>
-                                <td>₱830.00</td>
-                            </tr>
-                            <tr>
-                                <td>Meiji Meltykiss Party Assortment</td>
-                                <td>₱388.00</td>
-                            </tr>
-                            <tr>
-                                <td>Pelican Love Hip Scrub Butt Soap</td>
-                                <td>₱330.00</td>
-                            </tr>
-                            <tr>
-                                <td>Natori Cheetara Camembert</td>
-                                <td>₱226.00</td>
-                            </tr>
-                            <tr>
-                                <td>KitKat Milo</td>
-                                <td>₱278.00</td>
-                            </tr>
-                            <tr>
-                                <td>KitKat Dark Chocolate</td>
-                                <td>₱174.00</td>
-                            </tr>
-                            <tr>
-                                <td>KitKat Strawberry</td>
-                                <td>₱174.00</td>
-                            </tr>
-                            <tr>
-                                <td>GATSBY Ice Deodorant Body Paper, Unscented</td>
-                                <td>₱197.00</td>
-                            </tr>
-                            <tr>
-                                <td>Otsuka Green Tea Co Organic Matcha 30g</td>
-                                <td>₱1,296.00</td>
-                            </tr>
-                            <tr>
-                                <td>Kyoto Chanokura Uji Matcha Powder 150g</td>
-                                <td>₱1,037.00</td>
-                            </tr>
-                            <tr>
-                                <td>Skin Aqua 140ml</td>
-                                <td>₱568.00</td>
-                            </tr>
-                            <tr>
-                                <td>Starbucks Sakura 2025 Reusable Cup</td>
-                                <td>₱500.00</td>
-                            </tr>
-                            <tr>
-                                <td>Bourbon Alfort Mini Chocolate</td>
-                                <td>₱71.00</td>
-                            </tr>
-                            <tr>
-                                <td>Meiji Almond Chocolate</td>
-                                <td>₱194.00</td>
-                            </tr>
-                            <tr>
-                                <td>ichiran ramen 5's</td>
-                                <td>₱1,295.00</td>
-                            </tr>
-                            <tr>
-                                <td>ichiran ramen 2's</td>
-                                <td>₱582.00</td>
-                            </tr>
-                            <tr>
-                                <td>Starbucks Premium Mix Matcha Latte</td>
-                                <td>₱388.00</td>
-                            </tr>
-                            <tr>
-                                <td>Kit Kat Strawberry Shortcake</td>
-                                <td>₱161.00</td>
-                            </tr>
-                            <tr>
-                                <td>Rohto Lycée Eyedrops</td>
-                                <td>₱315.00</td>
-                            </tr>
-                            <tr>
-                                <td>Rohto Cool 40α Eye Drop</td>
-                                <td>₱131.00</td>
-                            </tr>
-                            <tr>
-                                <td>DHC-Continuous-Vitamin-C-Supplement-240-Tablets</td>
-                                <td>₱324.00</td>
-                            </tr>
-                            <tr>
-                                <td>DHC Vit C</td>
-                                <td>₱207.00</td>
-                            </tr>
-                            <tr>
-                                <td>DHC Collagen</td>
-                                <td>₱323.00</td>
-                            </tr>
-                            <tr>
-                                <td>Ghana Roastmilk</td>
-                                <td>₱107.00</td>
-                            </tr>
-                            <tr>
-                                <td>KEANA BEAUTE VEGAN & HALAL</td>
-                                <td>₱660.00</td>
-                            </tr>
-                            <tr>
-                                <td>KEANA RICE PACK</td>
-                                <td>₱825.00</td>
-                            </tr>
-                            <tr>
-                                <td>Bluelet Decoral, Relax Aroma Fragrance</td>
-                                <td>₱164.00</td>
-                            </tr>
-                            <tr>
-                                <td>Ishizawa Keana Rice Pack</td>
-                                <td>₱825.00</td>
-                            </tr>
-                            <tr>
-                                <td>Bufferin A 20 tablets</td>
-                                <td>₱296.00</td>
-                            </tr>
+                            <tr><td data-label="Product Name">Alfort Chocolate Small</td><td data-label="Selling Price (₱)">₱71.00</td></tr>
+                            <tr><td data-label="Product Name">SB Matcha Latte</td><td data-label="Selling Price (₱)">₱388.00</td></tr>
+                            <tr><td data-label="Product Name">Wasabi Great King</td><td data-label="Selling Price (₱)">₱701.00</td></tr>
+                            <tr><td data-label="Product Name">Hichew Soda</td><td data-label="Selling Price (₱)">₱116.00</td></tr>
+                            <tr><td data-label="Product Name">Hichew Set with Bag</td><td data-label="Selling Price (₱)">₱1,296.00</td></tr>
+                            <tr><td data-label="Product Name">Okuchi Propolis White</td><td data-label="Selling Price (₱)">₱158.00</td></tr>
+                            <tr><td data-label="Product Name">Biore Sunscreen Spray</td><td data-label="Selling Price (₱)">₱642.00</td></tr>
+                            <tr><td data-label="Product Name">Hokkaido Camembert Cheese</td><td data-label="Selling Price (₱)">₱701.00</td></tr>
+                            <tr><td data-label="Product Name">Pocky Giant Yubari Melon</td><td data-label="Selling Price (₱)">₱940.00</td></tr>
+                            <tr><td data-label="Product Name">Pocky Giant Iyokan Orange</td><td data-label="Selling Price (₱)">₱940.00</td></tr>
+                            <tr><td data-label="Product Name">Pocky Giant Nishiki Cherry</td><td data-label="Selling Price (₱)">₱940.00</td></tr>
+                            <tr><td data-label="Product Name">Bourbon Alfort Assorted Winter Pack</td><td data-label="Selling Price (₱)">₱765.00</td></tr>
+                            <tr><td data-label="Product Name">Starbucks Premium Mix Sakura Strawberry Latte</td><td data-label="Selling Price (₱)">₱388.00</td></tr>
+                            <tr><td data-label="Product Name">Yakiimo spread</td><td data-label="Selling Price (₱)">₱259.00</td></tr>
+                            <tr><td data-label="Product Name">2 Kinds of Chocolate-Covered Strawberries with Melon</td><td data-label="Selling Price (₱)">₱830.00</td></tr>
+                            <tr><td data-label="Product Name">Meiji Meltykiss Party Assortment</td><td data-label="Selling Price (₱)">₱388.00</td></tr>
+                            <tr><td data-label="Product Name">Pelican Love Hip Scrub Butt Soap</td><td data-label="Selling Price (₱)">₱330.00</td></tr>
+                            <tr><td data-label="Product Name">Natori Cheetara Camembert</td><td data-label="Selling Price (₱)">₱226.00</td></tr>
+                            <tr><td data-label="Product Name">KitKat Milo</td><td data-label="Selling Price (₱)">₱278.00</td></tr>
+                            <tr><td data-label="Product Name">KitKat Dark Chocolate</td><td data-label="Selling Price (₱)">₱174.00</td></tr>
+                            <tr><td data-label="Product Name">KitKat Strawberry</td><td data-label="Selling Price (₱)">₱174.00</td></tr>
+                            <tr><td data-label="Product Name">GATSBY Ice Deodorant Body Paper, Unscented</td><td data-label="Selling Price (₱)">₱197.00</td></tr>
+                            <tr><td data-label="Product Name">Otsuka Green Tea Co Organic Matcha 30g</td><td data-label="Selling Price (₱)">₱1,296.00</td></tr>
+                            <tr><td data-label="Product Name">Kyoto Chanokura Uji Matcha Powder 150g</td><td data-label="Selling Price (₱)">₱1,037.00</td></tr>
+                            <tr><td data-label="Product Name">Skin Aqua 140ml</td><td data-label="Selling Price (₱)">₱568.00</td></tr>
+                            <tr><td data-label="Product Name">Starbucks Sakura 2025 Reusable Cup</td><td data-label="Selling Price (₱)">₱500.00</td></tr>
+                            <tr><td data-label="Product Name">Bourbon Alfort Mini Chocolate</td><td data-label="Selling Price (₱)">₱71.00</td></tr>
+                            <tr><td data-label="Product Name">Meiji Almond Chocolate</td><td data-label="Selling Price (₱)">₱194.00</td></tr>
+                            <tr><td data-label="Product Name">ichiran ramen 5's</td><td data-label="Selling Price (₱)">₱1,295.00</td></tr>
+                            <tr><td data-label="Product Name">ichiran ramen 2's</td><td data-label="Selling Price (₱)">₱582.00</td></tr>
+                            <tr><td data-label="Product Name">Starbucks Premium Mix Matcha Latte</td><td data-label="Selling Price (₱)">₱388.00</td></tr>
+                            <tr><td data-label="Product Name">Kit Kat Strawberry Shortcake</td><td data-label="Selling Price (₱)">₱161.00</td></tr>
+                            <tr><td data-label="Product Name">Rohto Lycée Eyedrops</td><td data-label="Selling Price (₱)">₱315.00</td></tr>
+                            <tr><td data-label="Product Name">Rohto Cool 40α Eye Drop</td><td data-label="Selling Price (₱)">₱131.00</td></tr>
+                            <tr><td data-label="Product Name">DHC-Continuous-Vitamin-C-Supplement-240-Tablets</td><td data-label="Selling Price (₱)">₱324.00</td></tr>
+                            <tr><td data-label="Product Name">DHC Vit C</td><td data-label="Selling Price (₱)">₱207.00</td></tr>
+                            <tr><td data-label="Product Name">DHC Collagen</td><td data-label="Selling Price (₱)">₱323.00</td></tr>
+                            <tr><td data-label="Product Name">Ghana Roastmilk</td><td data-label="Selling Price (₱)">₱107.00</td></tr>
+                            <tr><td data-label="Product Name">KEANA BEAUTE VEGAN & HALAL</td><td data-label="Selling Price (₱)">₱660.00</td></tr>
+                            <tr><td data-label="Product Name">KEANA RICE PACK</td><td data-label="Selling Price (₱)">₱825.00</td></tr>
+                            <tr><td data-label="Product Name">Bluelet Decoral, Relax Aroma Fragrance</td><td data-label="Selling Price (₱)">₱164.00</td></tr>
+                            <tr><td data-label="Product Name">Ishizawa Keana Rice Pack</td><td data-label="Selling Price (₱)">₱825.00</td></tr>
+                            <tr><td data-label="Product Name">Bufferin A 20 tablets</td><td data-label="Selling Price (₱)">₱296.00</td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </section>
-        
         
     <footer id="contact">
         <div class="footer-content">
@@ -580,8 +386,8 @@
             const table = document.getElementById("priceTable");
             const tr = table.getElementsByTagName("tr");
 
-            for (let i = 1; i < tr.length; i++) {
-                const td = tr[i].getElementsByTagName("td")[0]; // Search only in product name column
+            for (let i = 1; i < tr.length; i++) { // Start at 1 to skip header row
+                const td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                     const txtValue = td.textContent || td.innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -592,62 +398,6 @@
                 }
             }
         }
-
-        // Sorting functionality
-        function sortTable(columnIndex, isNumeric = false) {
-            const table = document.getElementById("priceTable");
-            const tbody = table.querySelector("tbody");
-            const rows = Array.from(tbody.querySelectorAll("tr"));
-            let direction = "asc";
-            
-            // Check if we're already sorted by this column
-            const header = table.querySelectorAll("th")[columnIndex];
-            if (header.classList.contains("sorted-asc")) {
-                direction = "desc";
-                header.classList.remove("sorted-asc");
-                header.classList.add("sorted-desc");
-            } else if (header.classList.contains("sorted-desc")) {
-                direction = "asc";
-                header.classList.remove("sorted-desc");
-                header.classList.add("sorted-asc");
-            } else {
-                // Remove all sort classes first
-                table.querySelectorAll("th").forEach(th => {
-                    th.classList.remove("sorted-asc", "sorted-desc");
-                });
-                header.classList.add("sorted-asc");
-            }
-            
-            rows.sort((a, b) => {
-                const aValue = a.cells[columnIndex].textContent.trim();
-                const bValue = b.cells[columnIndex].textContent.trim();
-                
-                if (isNumeric) {
-                    // For numeric columns, remove currency symbols and commas
-                    const numA = parseFloat(aValue.replace(/[^\d.-]/g, ''));
-                    const numB = parseFloat(bValue.replace(/[^\d.-]/g, ''));
-                    return direction === "asc" ? numA - numB : numB - numA;
-                } else {
-                    // For text columns
-                    return direction === "asc" 
-                        ? aValue.localeCompare(bValue) 
-                        : bValue.localeCompare(aValue);
-                }
-            });
-            
-            // Rebuild the table
-            rows.forEach(row => tbody.appendChild(row));
-        }
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
     </script>
 </body>
 </html>
